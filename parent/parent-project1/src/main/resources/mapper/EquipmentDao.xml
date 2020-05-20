@@ -1,0 +1,280 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="equipment.dao.EquipmentDao">
+
+    <resultMap type="equipment.entity.Equipment" id="EquipmentMap">
+        <result property="id" column="id" jdbcType="VARCHAR"/>
+        <result property="equipmentTypeId" column="equipment_type_id" jdbcType="VARCHAR"/>
+        <result property="xinghao" column="xinghao" jdbcType="VARCHAR"/>
+        <result property="name" column="name" jdbcType="VARCHAR"/>
+        <result property="projectId" column="project_id" jdbcType="VARCHAR"/>
+        <result property="province" column="province" jdbcType="VARCHAR"/>
+        <result property="city" column="city" jdbcType="VARCHAR"/>
+        <result property="area" column="area" jdbcType="VARCHAR"/>
+        <result property="town" column="town" jdbcType="VARCHAR"/>
+        <result property="floor" column="floor" jdbcType="VARCHAR"/>
+        <result property="unit" column="unit" jdbcType="VARCHAR"/>
+        <result property="household" column="household" jdbcType="VARCHAR"/>
+        <result property="addressType" column="address_type" jdbcType="VARCHAR"/>
+        <result property="addressdes" column="addressdes" jdbcType="VARCHAR"/>
+        <result property="parentType" column="parent_type" jdbcType="VARCHAR"/>
+        <result property="parentId" column="parent_id" jdbcType="VARCHAR"/>
+        <result property="parentIds" column="parent_ids" jdbcType="VARCHAR"/>
+        <result property="controlIp" column="control_ip" jdbcType="VARCHAR"/>
+        <result property="port" column="port" jdbcType="VARCHAR"/>
+        <result property="snNum" column="sn_num" jdbcType="VARCHAR"/>
+        <result property="noFlag" column="no_flag" jdbcType="VARCHAR"/>
+        <result property="state" column="state" jdbcType="VARCHAR"/>
+        <result property="madein" column="madein" jdbcType="VARCHAR"/>
+        <result property="madeperson" column="madeperson" jdbcType="VARCHAR"/>
+        <result property="madeaddress" column="madeaddress" jdbcType="VARCHAR"/>
+        <result property="picture" column="picture" jdbcType="VARCHAR"/>
+        <result property="ton" column="ton" jdbcType="INTEGER"/>
+        <result property="setKa" column="set_ka" jdbcType="VARCHAR"/>
+        <result property="createBy" column="create_by" jdbcType="VARCHAR"/>
+        <result property="createDate" column="create_date" jdbcType="TIMESTAMP"/>
+        <result property="updateBy" column="update_by" jdbcType="VARCHAR"/>
+        <result property="updateDate" column="update_date" jdbcType="TIMESTAMP"/>
+        <result property="delFlag" column="del_flag" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="EquipmentMap">
+        select
+          id, equipment_type_id, xinghao, name, project_id, province, city, area, town, floor, unit, household, address_type, addressdes, parent_type, parent_id, parent_ids, control_ip, port, sn_num, no_flag, state, madein, madeperson, madeaddress, picture, ton, set_ka, create_by, create_date, update_by, update_date, del_flag
+        from tghy.equipment
+        where id = #{id}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="EquipmentMap">
+        select
+          id, equipment_type_id, xinghao, name, project_id, province, city, area, town, floor, unit, household, address_type, addressdes, parent_type, parent_id, parent_ids, control_ip, port, sn_num, no_flag, state, madein, madeperson, madeaddress, picture, ton, set_ka, create_by, create_date, update_by, update_date, del_flag
+        from tghy.equipment
+        limit #{offset}, #{limit}
+    </select>
+
+    <!--通过实体作为筛选条件查询-->
+    <select id="queryAll" resultMap="EquipmentMap">
+        select
+          id, equipment_type_id, xinghao, name, project_id, province, city, area, town, floor, unit, household, address_type, addressdes, parent_type, parent_id, parent_ids, control_ip, port, sn_num, no_flag, state, madein, madeperson, madeaddress, picture, ton, set_ka, create_by, create_date, update_by, update_date, del_flag
+        from tghy.equipment
+        <where>
+            <if test="id != null and id != ''">
+                and id = #{id}
+            </if>
+            <if test="equipmentTypeId != null and equipmentTypeId != ''">
+                and equipment_type_id = #{equipmentTypeId}
+            </if>
+            <if test="xinghao != null and xinghao != ''">
+                and xinghao = #{xinghao}
+            </if>
+            <if test="name != null and name != ''">
+                and name = #{name}
+            </if>
+            <if test="projectId != null and projectId != ''">
+                and project_id = #{projectId}
+            </if>
+            <if test="province != null and province != ''">
+                and province = #{province}
+            </if>
+            <if test="city != null and city != ''">
+                and city = #{city}
+            </if>
+            <if test="area != null and area != ''">
+                and area = #{area}
+            </if>
+            <if test="town != null and town != ''">
+                and town = #{town}
+            </if>
+            <if test="floor != null and floor != ''">
+                and floor = #{floor}
+            </if>
+            <if test="unit != null and unit != ''">
+                and unit = #{unit}
+            </if>
+            <if test="household != null and household != ''">
+                and household = #{household}
+            </if>
+            <if test="addressType != null and addressType != ''">
+                and address_type = #{addressType}
+            </if>
+            <if test="addressdes != null and addressdes != ''">
+                and addressdes = #{addressdes}
+            </if>
+            <if test="parentType != null and parentType != ''">
+                and parent_type = #{parentType}
+            </if>
+            <if test="parentId != null and parentId != ''">
+                and parent_id = #{parentId}
+            </if>
+            <if test="parentIds != null and parentIds != ''">
+                and parent_ids = #{parentIds}
+            </if>
+            <if test="controlIp != null and controlIp != ''">
+                and control_ip = #{controlIp}
+            </if>
+            <if test="port != null and port != ''">
+                and port = #{port}
+            </if>
+            <if test="snNum != null and snNum != ''">
+                and sn_num = #{snNum}
+            </if>
+            <if test="noFlag != null and noFlag != ''">
+                and no_flag = #{noFlag}
+            </if>
+            <if test="state != null and state != ''">
+                and state = #{state}
+            </if>
+            <if test="madein != null and madein != ''">
+                and madein = #{madein}
+            </if>
+            <if test="madeperson != null and madeperson != ''">
+                and madeperson = #{madeperson}
+            </if>
+            <if test="madeaddress != null and madeaddress != ''">
+                and madeaddress = #{madeaddress}
+            </if>
+            <if test="picture != null and picture != ''">
+                and picture = #{picture}
+            </if>
+            <if test="ton != null">
+                and ton = #{ton}
+            </if>
+            <if test="setKa != null and setKa != ''">
+                and set_ka = #{setKa}
+            </if>
+            <if test="createBy != null and createBy != ''">
+                and create_by = #{createBy}
+            </if>
+            <if test="createDate != null">
+                and create_date = #{createDate}
+            </if>
+            <if test="updateBy != null and updateBy != ''">
+                and update_by = #{updateBy}
+            </if>
+            <if test="updateDate != null">
+                and update_date = #{updateDate}
+            </if>
+            <if test="delFlag != null and delFlag != ''">
+                and del_flag = #{delFlag}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="id" useGeneratedKeys="true">
+        insert into tghy.equipment(equipment_type_id, xinghao, name, project_id, province, city, area, town, floor, unit, household, address_type, addressdes, parent_type, parent_id, parent_ids, control_ip, port, sn_num, no_flag, state, madein, madeperson, madeaddress, picture, ton, set_ka, create_by, create_date, update_by, update_date, del_flag)
+        values (#{equipmentTypeId}, #{xinghao}, #{name}, #{projectId}, #{province}, #{city}, #{area}, #{town}, #{floor}, #{unit}, #{household}, #{addressType}, #{addressdes}, #{parentType}, #{parentId}, #{parentIds}, #{controlIp}, #{port}, #{snNum}, #{noFlag}, #{state}, #{madein}, #{madeperson}, #{madeaddress}, #{picture}, #{ton}, #{setKa}, #{createBy}, #{createDate}, #{updateBy}, #{updateDate}, #{delFlag})
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update tghy.equipment
+        <set>
+            <if test="equipmentTypeId != null and equipmentTypeId != ''">
+                equipment_type_id = #{equipmentTypeId},
+            </if>
+            <if test="xinghao != null and xinghao != ''">
+                xinghao = #{xinghao},
+            </if>
+            <if test="name != null and name != ''">
+                name = #{name},
+            </if>
+            <if test="projectId != null and projectId != ''">
+                project_id = #{projectId},
+            </if>
+            <if test="province != null and province != ''">
+                province = #{province},
+            </if>
+            <if test="city != null and city != ''">
+                city = #{city},
+            </if>
+            <if test="area != null and area != ''">
+                area = #{area},
+            </if>
+            <if test="town != null and town != ''">
+                town = #{town},
+            </if>
+            <if test="floor != null and floor != ''">
+                floor = #{floor},
+            </if>
+            <if test="unit != null and unit != ''">
+                unit = #{unit},
+            </if>
+            <if test="household != null and household != ''">
+                household = #{household},
+            </if>
+            <if test="addressType != null and addressType != ''">
+                address_type = #{addressType},
+            </if>
+            <if test="addressdes != null and addressdes != ''">
+                addressdes = #{addressdes},
+            </if>
+            <if test="parentType != null and parentType != ''">
+                parent_type = #{parentType},
+            </if>
+            <if test="parentId != null and parentId != ''">
+                parent_id = #{parentId},
+            </if>
+            <if test="parentIds != null and parentIds != ''">
+                parent_ids = #{parentIds},
+            </if>
+            <if test="controlIp != null and controlIp != ''">
+                control_ip = #{controlIp},
+            </if>
+            <if test="port != null and port != ''">
+                port = #{port},
+            </if>
+            <if test="snNum != null and snNum != ''">
+                sn_num = #{snNum},
+            </if>
+            <if test="noFlag != null and noFlag != ''">
+                no_flag = #{noFlag},
+            </if>
+            <if test="state != null and state != ''">
+                state = #{state},
+            </if>
+            <if test="madein != null and madein != ''">
+                madein = #{madein},
+            </if>
+            <if test="madeperson != null and madeperson != ''">
+                madeperson = #{madeperson},
+            </if>
+            <if test="madeaddress != null and madeaddress != ''">
+                madeaddress = #{madeaddress},
+            </if>
+            <if test="picture != null and picture != ''">
+                picture = #{picture},
+            </if>
+            <if test="ton != null">
+                ton = #{ton},
+            </if>
+            <if test="setKa != null and setKa != ''">
+                set_ka = #{setKa},
+            </if>
+            <if test="createBy != null and createBy != ''">
+                create_by = #{createBy},
+            </if>
+            <if test="createDate != null">
+                create_date = #{createDate},
+            </if>
+            <if test="updateBy != null and updateBy != ''">
+                update_by = #{updateBy},
+            </if>
+            <if test="updateDate != null">
+                update_date = #{updateDate},
+            </if>
+            <if test="delFlag != null and delFlag != ''">
+                del_flag = #{delFlag},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from tghy.equipment where id = #{id}
+    </delete>
+
+</mapper>

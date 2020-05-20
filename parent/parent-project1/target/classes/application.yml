@@ -1,0 +1,59 @@
+server:
+  port: 3002
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:3000/eureka/
+    instance:
+      prefer-ip-address: true
+spring:
+  application:
+    name: parent-project1
+  datasource:
+    #    url: jdbc:mysql://101.201.101.235:3306/tghy?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
+    url: jdbc:mysql://101.201.101.235:3306/tghy?useUnicode=true& characterEncoding=utf-8&serverTimezone=GMT%2b8&useSSL=false
+    username: weiqiufeng
+    password: 123456
+    driver-class-name: com.mysql.jdbc.Driver
+#  redis:
+#    host: 39.100.8.62
+#    port: 6379
+#    password:
+#    jedis:
+#      pool:
+#        max-active: 8
+#        max-wait: -1
+#        max-idle: 500
+#        min-idle: 0
+#    lettuce:
+#      shutdown-timeout: 0
+mybatis:
+  mapper-locations: classpath*:mapper/*Mapper.xml
+  type-aliases-package: com.creatunion.modules
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    call-setters-on-nulls: true
+    return-instance-for-empty-row: false
+    mapUnderscoreToCamelCase: true
+pagehelper:
+  helper-dialect: mysql
+  reasonable: false
+  support-methods-arguments: false
+  params: count=countSql
+#ribbon的超时时间
+ribbon:
+  eureka:
+
+    enabled: true
+  ReadTimeout: 30000
+  ConnectTimeout: 30000
+#hystrix的超时时间
+hystrix:
+  command:
+    default:
+      execution:
+        timeout:
+          enabled: true
+        isolation:
+          thread:
+            timeoutInMilliseconds: 30000

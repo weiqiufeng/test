@@ -1,0 +1,56 @@
+server:
+  port: 3001
+spring:
+  application:
+    name: parent-zuul
+#  redis:
+#    host: 39.100.8.62
+#    port: 6379
+#    password:
+#    jedis:
+#      pool:
+#        max-active: 8
+#        max-wait: -1
+#        max-idle: 500
+#        min-idle: 0
+#    lettuce:
+#      shutdown-timeout: 0
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:3000/eureka/
+    ##����������飨��Ҫspring-boot-starter-actuator������
+  #    ealthcheck:
+  #      enabled: true
+  instance:
+    ##���ڵ���ʱ�䣨Ĭ��90�룩���³���Ļ���ʱ����Ը���
+    lease-expiration-duration-in-seconds: 90
+    ##���ڸ���ʱ������Ĭ��30�룩
+    lease-renewal-interval-in-seconds: 30
+
+zuul:
+  routes:
+    project1:
+      path: /project1/**
+      serviceId: parent-project1
+  sensitive-headers:
+    - Cookie,Set-Cookie,Authorization
+
+##���ΰ�ȫ��֤
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 60000
+ribbon:
+  ReadTimeout: 60000
+  ConnectTimeout: 3000
+
+
